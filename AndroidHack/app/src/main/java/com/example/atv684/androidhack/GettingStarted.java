@@ -28,7 +28,7 @@ Button b1;
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent returnBtn = new Intent("android.intent.action.MAIN");
+                Intent returnBtn = new Intent(GettingStarted.this,MainActivity.class);
                 startActivity(returnBtn);
             }
         });
