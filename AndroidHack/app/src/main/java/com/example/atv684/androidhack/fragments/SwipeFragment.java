@@ -32,6 +32,7 @@ import com.firebase.client.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * Created by atv684 on 8/27/16.
@@ -145,7 +146,8 @@ public class SwipeFragment extends Fragment{
             SimpleCardStackAdapter adapter = new SimpleCardStackAdapter(getContext());
 
             for (House h : houses) {
-                CardModel cardModel = new CardModel(h.getName(), h.getDescription(), getResources().getDrawable(R.drawable.cats));
+
+                CardModel cardModel = new CardModel(h.getName(), h.getDescription(), getResources().getDrawable(getRandomHouseDrawable()));
                 cardModel.setOnCardDimissedListener(cardDimissedListener);
                 adapter.add(cardModel);
             }
@@ -178,5 +180,24 @@ public class SwipeFragment extends Fragment{
     }
 
 
+    public int getRandomHouseDrawable() {
+        Random random = new Random();
 
+        int id = random.nextInt(5);
+
+        switch(id){
+            case 0:
+                return R.drawable.house1;
+            case 1:
+                return R.drawable.house2;
+            case 2:
+                return R.drawable.house3;
+            case 3:
+                return R.drawable.house4;
+            case 4:
+                return R.drawable.house5;
+        }
+
+        return R.drawable.house1;
+    }
 }
