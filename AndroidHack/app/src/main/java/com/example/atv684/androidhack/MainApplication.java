@@ -8,6 +8,7 @@ import com.joanzapata.iconify.Iconify;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.example.atv684.androidhack.objects.House;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -17,6 +18,8 @@ import java.util.List;
 public class MainApplication extends Application {
     private List<House> searchResults;
 
+    public HashMap<String, Boolean> houseStatuses;
+
     private static MainApplication mainApplication;
 
     @Override
@@ -24,6 +27,8 @@ public class MainApplication extends Application {
         super.onCreate();
         Iconify.with(new FontAwesomeModule());
         mainApplication = this;
+
+        houseStatuses = new HashMap<String, Boolean>();
     }
 
     /**
@@ -51,7 +56,22 @@ public class MainApplication extends Application {
         return user;
     }
 
+
+
     public void setSearchResults(List<House> searchResults) {
         this.searchResults = searchResults;
+    }
+
+    /**
+     * set to true if accepted, false if rejected
+     * @param name
+     * @param status
+     */
+    public void setHouseStatus(String name, Boolean status){
+        houseStatuses.put(name, status);
+    }
+
+    public Boolean getHouseStatus(String name) {
+        return houseStatuses.get(name);
     }
 }

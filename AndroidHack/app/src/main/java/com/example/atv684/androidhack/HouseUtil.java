@@ -1,6 +1,7 @@
 package com.example.atv684.androidhack;
 
 import com.example.atv684.androidhack.objects.House;
+import com.example.atv684.androidhack.objects.User;
 
 import java.util.ArrayList;
 
@@ -17,4 +18,23 @@ public class HouseUtil {
         }
         return null;
     }
+
+    public boolean canAffordHouse(House house){
+
+        User user = MainApplication.getApplication().getUser();
+
+        long housePrice = house.getCost();
+
+        if(user.getYearlyIncome()/3 < housePrice/15/12){
+            return false;
+        }
+
+        if(user.getCreditScore() < 600){
+            return false;
+        }
+
+        return true;
+    }
+
+
 }

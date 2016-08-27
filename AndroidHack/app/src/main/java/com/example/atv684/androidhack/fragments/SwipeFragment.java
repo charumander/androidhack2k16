@@ -60,6 +60,12 @@ public class SwipeFragment extends Fragment{
         super.onCreate(savedInstanceState);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        waitForHouses();
+    }
 
     public void onGetHouses(ArrayList<House> houses){
         SimpleCardStackAdapter adapter = new SimpleCardStackAdapter(getContext());
@@ -89,6 +95,9 @@ public class SwipeFragment extends Fragment{
                     }
                 }
             }, 100);
+        }
+        else{
+            onGetHouses(houses);
         }
     }
 
