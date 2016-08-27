@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
-          package="com.example.atv684.androidhack"
-    >
-
-    <uses-permission android:name="android.permission.INTERNET"/>
+          package="com.example.atv684.androidhack">
 
     <application
         android:allowBackup="true"
@@ -15,12 +12,12 @@
         tools:replace="android:icon"
         android:name=".MainApplication"
         >
+        <uses-permission android:name="android.permission.INTERNET" />
 
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"
-            >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -28,6 +25,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".HouseActivity" />
+        <activity
+            android:name=".GettingStarted"
+            android:label="@string/title_activity_getting_started" >
+        </activity>
     </application>
 
 </manifest>
