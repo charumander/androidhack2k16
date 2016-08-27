@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.atv684.androidhack.objects.House;
 import com.squareup.picasso.Picasso;
@@ -60,13 +61,37 @@ public class HouseActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_house);
 
-        final ViewPager pager = (ViewPager) findViewById(R.id.pager);
-        final CircleIndicator indicator = (CircleIndicator) findViewById(R.id.indicator);
+        final ViewPager pager = (ViewPager) findViewById(R.id.viewpager_house_pager);
+        final CircleIndicator indicator = (CircleIndicator) findViewById(R.id.viewpager_house_indicator);
 
         final HouseAdapter adapter = new HouseAdapter(getSupportFragmentManager(), house);
 
         pager.setAdapter(adapter);
         indicator.setViewPager(pager);
+
+        final TextView nameTextView = (TextView) findViewById(R.id.textview_house_name);
+        nameTextView.setText(getString(R.string.house_template_name, house.getName()));
+
+        final TextView costTextView = (TextView) findViewById(R.id.textview_house_cost);
+        costTextView.setText(getString(R.string.house_template_cost, house.getCost()));
+
+        final TextView bedsTextView = (TextView) findViewById(R.id.textview_house_beds);
+        bedsTextView.setText(getString(R.string.house_template_beds, house.getBeds()));
+
+        final TextView bathsTextView = (TextView) findViewById(R.id.textview_house_baths);
+        bathsTextView.setText(getString(R.string.house_template_baths, house.getBaths()));
+
+        final TextView typeTextView = (TextView) findViewById(R.id.textview_house_type);
+        typeTextView.setText(getString(R.string.house_template_type, house.getType()));
+
+        final TextView cityTextView = (TextView) findViewById(R.id.textview_house_city);
+        cityTextView.setText(getString(R.string.house_template_city, house.getCity()));
+
+        final TextView zipTextView = (TextView) findViewById(R.id.textview_house_zip);
+        zipTextView.setText(getString(R.string.house_template_zip, house.getZip()));
+
+        final TextView descriptionTextView = (TextView) findViewById(R.id.textview_house_description);
+        descriptionTextView.setText(getString(R.string.house_template_description, house.getDescription()));
     }
 
 
