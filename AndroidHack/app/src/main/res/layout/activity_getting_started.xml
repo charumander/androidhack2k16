@@ -1,0 +1,38 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:background="#673ab7"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.atv684.androidhack.GettingStarted">
+
+    <TextView android:text="Welcome to Heart Home"
+        android:paddingTop="100dp"
+        android:id="@+id/welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/abc_text_size_headline_material"
+        android:textColor="#ffffff">
+    </TextView>
+    <TextView android:text="Heart Home is designed to be a fun and simple tool to aid you in your quest to find your perfect home. Get started to find your ideal home."
+        android:id="@+id/body"
+        android:paddingTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/abc_text_size_body_1_material"
+        android:textColor="#ffffff"
+        android:layout_below="@id/welcome">
+    </TextView>
+
+    <Button style="?android:attr/buttonBarButtonStyle"
+        android:orientation="horizontal"
+        android:id="@+id/bottombar"
+        android:paddingTop="200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Get Started"
+        android:textStyle="bold"
+        android:textColor="#ffffff" />
+</RelativeLayout>
