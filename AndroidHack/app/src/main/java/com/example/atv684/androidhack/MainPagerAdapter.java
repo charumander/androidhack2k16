@@ -5,6 +5,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.example.atv684.androidhack.fragments.MyHomesFragment;
+
 /**
  * Created by atv684 on 8/27/16.
  */
@@ -20,6 +22,9 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
 
         switch (position) {
+
+            case 1:
+                return new MyHomesFragment();
             default:
                 return new Fragment();
         }
