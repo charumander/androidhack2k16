@@ -143,6 +143,12 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
             houseObject.setType(house.child("type").getValue()!=null? (String) house.child("type").getValue():"" );
             houseObject.setZip(house.child("zip").getValue()!=null? (String) house.child("zip").getValue():"" );
             //houseObject.setHouseImages(house.child("houseImages").getChildren());
+            Iterable<DataSnapshot> houseImages = house.child("houseImages").getChildren();
+            List<String> imageUrls = new ArrayList<>();
+            for(DataSnapshot image: houseImages){
+                imageUrls.add(image.getValue().toString());
+            }
+            houseObject.setHouseImages(imageUrls);
             houses.add(houseObject);
         }
         MainApplication.getApplication().setSearchResults(houses);
