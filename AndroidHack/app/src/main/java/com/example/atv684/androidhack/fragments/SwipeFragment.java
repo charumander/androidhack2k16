@@ -56,7 +56,7 @@ public class SwipeFragment extends Fragment{
                 MainApplication.getApplication().setHouseStatus(house.getName(), true);
                 MainApplication.getApplication().addSwipedHouse(house.getName(), house);
 
-                //showCongrats();
+                showCongrats();
             }
             else{
                 MainApplication.getApplication().setHouseStatus(house.getName(), false);
@@ -70,6 +70,21 @@ public class SwipeFragment extends Fragment{
             cardCount++;
         }
     };
+
+    private void showCongrats() {
+        String message = "Congratulations! our data shows that you can afford this home.";
+
+        // Use the Builder class for convenient dialog construction
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage(message)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                });
+        // Create the AlertDialog object and return it
+        builder.create().show();
+    }
 
     private void showCantAfford(House house) {
 
