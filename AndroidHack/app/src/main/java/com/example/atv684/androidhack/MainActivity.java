@@ -26,8 +26,7 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity implements ActionBar.TabListener {
 
     private ViewPager viewPager;
-    private MainPagerAdapter mAdapter;
-    private ActionBar actionBar;
+
     // Tab titles
     private String[] tabs = {"Find a house", "My Matches", "Profile"};
 
@@ -43,9 +42,9 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
         // Initilization
         viewPager = (ViewPager) findViewById(R.id.pager);
-        actionBar = getSupportActionBar();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        viewPager.setAdapter(mAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Tab 1"));
