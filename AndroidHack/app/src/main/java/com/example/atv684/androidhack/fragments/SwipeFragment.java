@@ -1,5 +1,7 @@
 package com.example.atv684.androidhack.fragments;
 
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,8 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.andtinder.model.CardModel;
 import com.andtinder.view.CardContainer;
+import com.andtinder.view.SimpleCardStackAdapter;
 import com.example.atv684.androidhack.R;
+import com.example.atv684.androidhack.objects.House;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -17,6 +22,8 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
 import com.firebase.client.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -38,55 +45,17 @@ public class SwipeFragment extends Fragment {
 
         mCardContainer = (CardContainer) view.findViewById(R.id.cardContainer);
 
-        Firebase ref = new Firebase("https://housr-df682.firebaseio.com/houses");
-
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                System.out.println(snapshot.getValue());
-            }
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-                System.out.println("The read failed: " + firebaseError.getMessage());
-            }
-        });
-
-        Query query = ref.child("houses").orderByChild("name");
-
-        query.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String previousChild) {
-                System.out.println(dataSnapshot.getValue());
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-
-            }
-
-
-        });
+        SimpleCardStackAdapter adapter = new SimpleCardStackAdapter(getContext());
+        adapter.add(new CardModel("Title1", "Description goes here", getActivity().getDrawable(R.drawable.cats)));
+        mCardContainer.setAdapter(adapter);
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
+
 
 
 
