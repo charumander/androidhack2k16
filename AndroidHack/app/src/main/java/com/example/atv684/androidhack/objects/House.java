@@ -1,11 +1,12 @@
 package com.example.atv684.androidhack.objects;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by atv684 on 8/27/16.
  */
-public class House {
+public class House implements Serializable {
 
     String name, description,zip, city , type;
 
