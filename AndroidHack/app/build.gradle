@@ -38,6 +38,9 @@ dependencies {
     compile 'com.google.firebase:firebase-core:9.4.0'
 
     compile 'com.github.kikoso:SwipeableCards:1.1-RELEASE@aar'
+
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'me.relex:circleindicator:1.2.1@aar'
 }
 
 apply plugin: 'com.google.gms.google-services'
