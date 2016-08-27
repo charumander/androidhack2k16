@@ -47,7 +47,10 @@ public class SwipeFragment extends Fragment {
         mCardContainer = (CardContainer) view.findViewById(R.id.cardContainer);
 
         SimpleCardStackAdapter adapter = new SimpleCardStackAdapter(getContext());
-        adapter.add(new CardModel("Title1", "Description goes here", (Drawable)null));
+        adapter.add(new CardModel("Title1", "Description goes here", getResources().getDrawable(R.drawable.cats)));
+        adapter.add(new CardModel("Title1", "Description goes here", getResources().getDrawable(R.drawable.camera)));
+        adapter.add(new CardModel("Title1", "Description goes here", getResources().getDrawable(R.drawable.heart)));
+
         mCardContainer.setAdapter(adapter);
     }
 
