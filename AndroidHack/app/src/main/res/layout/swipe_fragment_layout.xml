@@ -17,13 +17,22 @@
         />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/myFAB"
+        android:id="@+id/like_button"
         android:layout_gravity="bottom|right"
         android:layout_margin="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_like"
+        android:src="@mipmap/heart_icon"
         app:elevation="4dp" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/dislike_button"
+            android:layout_gravity="bottom|left"
+            android:layout_margin="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/cancel_icon"
+            app:elevation="4dp" />
 
     </FrameLayout>
 </LinearLayout>
