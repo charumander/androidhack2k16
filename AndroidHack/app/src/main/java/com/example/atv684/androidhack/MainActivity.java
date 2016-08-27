@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
             //houseObject.setHouseImages(house.child("houseImages").getChildren());
             houses.add(houseObject);
         }
-        houses.size();
+        MainApplication.getApplication().setSearchResults(houses);
     }
 
     @Override
