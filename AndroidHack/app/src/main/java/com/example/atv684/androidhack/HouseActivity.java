@@ -1,6 +1,7 @@
 package com.example.atv684.androidhack;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -40,6 +41,9 @@ public class HouseActivity extends AppCompatActivity {
             "Condo"
     );
 
+    public static void showHouse(final Context context, final House house) {
+        context.startActivity(new Intent(context, HouseActivity.class).putExtra(HOUSE_EXTRA, house));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +97,6 @@ public class HouseActivity extends AppCompatActivity {
         final TextView descriptionTextView = (TextView) findViewById(R.id.textview_house_description);
         descriptionTextView.setText(getString(R.string.house_template_description, house.getDescription()));
     }
-
 
     private static class HouseAdapter extends FragmentStatePagerAdapter {
         private House house;
