@@ -1,5 +1,6 @@
 package com.example.atv684.androidhack;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -24,6 +25,14 @@ Button b1;
         header.setVisibility(View.VISIBLE);
         body.setVisibility(View.VISIBLE);
         b1.setVisibility(View.VISIBLE);
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent returnBtn = new Intent("android.intent.action.MAIN");
+                startActivity(returnBtn);
+            }
+        });
+
 
     }
 
