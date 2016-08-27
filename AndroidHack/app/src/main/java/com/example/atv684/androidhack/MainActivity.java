@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.atv684.androidhack.objects.House;
+import com.example.atv684.androidhack.objects.User;
 import com.firebase.client.Firebase;
 
 import org.json.JSONArray;
@@ -26,11 +27,16 @@ public class MainActivity extends AppCompatActivity {
 
         Firebase.setAndroidContext(this);
 
+        User user1 = new User("tom", "19806", 250000, 650, 60000);
+
+
         Firebase myFirebaseRef = new Firebase("https://housr-df682.firebaseio.com/");
 
         House h1 = new House("LazyPalms", "Luxurious palace on the beach", "19806", 500000);
 
         myFirebaseRef.child("houses").child(h1.getName()).setValue(h1);
+
+        myFirebaseRef.child("users").child(user1.getUsername()).setValue(user1);
 
     }
 

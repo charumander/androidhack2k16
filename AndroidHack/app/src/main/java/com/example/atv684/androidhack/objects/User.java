@@ -5,9 +5,17 @@ package com.example.atv684.androidhack.objects;
  */
 public class User {
 
-    int creditScore, targetPrice, monthlyExpenses, yearlyIncome, zip, desiredDistance;
+    int creditScore, targetPrice, monthlyExpenses, yearlyIncome, desiredDistance;
 
-    String username, preference;
+    String username, preference, zip;
+
+    public User(String username, String zip, int targetPrice, int creditScore, int yearlyIncome){
+        this.creditScore = creditScore;
+        this.username = username;
+        this.targetPrice = targetPrice;
+        this.zip = zip;
+        this.yearlyIncome = yearlyIncome;
+    }
 
     public int getCreditScore() {
         return creditScore;
@@ -41,11 +49,11 @@ public class User {
         this.yearlyIncome = yearlyIncome;
     }
 
-    public int getZip() {
+    public String getZip() {
         return zip;
     }
 
-    public void setZip(int zip) {
+    public void setZip(String zip) {
         this.zip = zip;
     }
 
