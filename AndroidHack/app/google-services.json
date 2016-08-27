@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1087852514432",
+    "firebase_url": "https://housr-df682.firebaseio.com",
+    "project_id": "housr-df682",
+    "storage_bucket": "housr-df682.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1087852514432:android:d90ee696b111acb3",
+        "android_client_info": {
+          "package_name": "com.example.atv684.androidhack"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1087852514432-tqj50k0mc2c94u1jq4e9r8l9jgo9cvm7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzSr19T2j9FdpCaapufysWxdNCyYSssqA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -9,6 +9,12 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.atv684.androidhack.objects.House;
+import com.firebase.client.Firebase;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -18,14 +24,14 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        Firebase.setAndroidContext(this);
+
+        Firebase myFirebaseRef = new Firebase("https://housr-df682.firebaseio.com/");
+
+        House h1 = new House("LazyPalms", "Luxurious palace on the beach", "19806", 500000);
+
+        myFirebaseRef.child("houses").child(h1.getName()).setValue(h1);
+
     }
 
     @Override
