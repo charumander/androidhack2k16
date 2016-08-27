@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import com.example.atv684.androidhack.objects.House;
 import com.squareup.picasso.Picasso;
 
+import java.util.Arrays;
 import java.util.List;
 
 import me.relex.circleindicator.CircleIndicator;
@@ -23,18 +24,38 @@ import me.relex.circleindicator.CircleIndicator;
 public class HouseActivity extends AppCompatActivity {
     public static final String HOUSE_EXTRA = "HOUSE_EXTRA";
 
+    private static final House MOCK_HOUSE = new House(
+            "LazyPalms",
+            "Luxurious palace on the beach",
+            "19806",
+            500000,
+            Arrays.asList(
+                    "http://placekitten.com/g/600/400",
+                    "http://placekitten.com/g/400/300",
+                    "http://placekitten.com/g/600/300"
+            ),
+            1,
+            1,
+            "Condo"
+    );
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (!getIntent().hasExtra(HOUSE_EXTRA)) {
-            finish();
-            return;
+        House house = null;
+        if (getIntent().hasExtra(HOUSE_EXTRA)) {
+            house = (House) getIntent().getSerializableExtra(HOUSE_EXTRA);
         }
-        final House house = (House) getIntent().getSerializableExtra(HOUSE_EXTRA);
+
         if (house == null) {
-            finish();
-            return;
+            if (BuildConfig.DEBUG) {
+                house = MOCK_HOUSE;
+            } else {
+                finish();
+                return;
+            }
         }
 
         setContentView(R.layout.activity_house);
