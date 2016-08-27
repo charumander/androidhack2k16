@@ -4,14 +4,27 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 
 public class GettingStarted extends ActionBarActivity {
+Button b1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_getting_started);
+        b1=(Button)findViewById(R.id.bottombar);
+        TextView header = (TextView)findViewById(R.id.welcome);
+        TextView body = (TextView)findViewById(R.id.body);
+        header.setVisibility(View.VISIBLE);
+        body.setVisibility(View.VISIBLE);
+        b1.setVisibility(View.VISIBLE);
+
     }
 
     @Override
