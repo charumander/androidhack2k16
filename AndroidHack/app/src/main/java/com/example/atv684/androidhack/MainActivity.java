@@ -1,5 +1,7 @@
 package com.example.atv684.androidhack;
 
+import android.app.ActionBar;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,7 +18,13 @@ import com.firebase.client.Firebase;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
+
+    private ViewPager viewPager;
+    private TabsPagerAdapter mAdapter;
+    private ActionBar actionBar;
+    // Tab titles
+    private String[] tabs = { "Top Rated", "Games", "Movies" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +40,14 @@ public class MainActivity extends AppCompatActivity {
 
         Firebase myFirebaseRef = new Firebase("https://housr-df682.firebaseio.com/");
 
-        House h1 = new House("LazyPalms", "Luxurious palace on the beach", "19806", 500000);
+        // Initilization
+        viewPager = (ViewPager) findViewById(R.id.pager);
+        actionBar = getActionBar();
+        mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
 
-        myFirebaseRef.child("houses").child(h1.getName()).setValue(h1);
-
-        myFirebaseRef.child("users").child(user1.getUsername()).setValue(user1);
+        viewPager.setAdapter(mAdapter);
+        actionBar.setHomeButtonEnabled(false);
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
     }
 
@@ -60,5 +71,20 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
+
+    }
+
+    @Override
+    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
+
+    }
+
+    @Override
+    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
+
     }
 }
