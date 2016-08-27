@@ -33,7 +33,16 @@ public class MyHomesFragment extends ListFragment{
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
         ArrayList<House> houses = new ArrayList<House>();
+
+        houses = MainApplication.getApplication().getSwipedHouses();
 
         adapter = new HouseListAdapter(getContext(), houses);
         setListAdapter(adapter);
