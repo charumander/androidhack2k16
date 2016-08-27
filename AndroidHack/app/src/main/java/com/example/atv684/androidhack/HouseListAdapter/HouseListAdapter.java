@@ -5,11 +5,13 @@ import android.database.DataSetObserver;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import com.example.atv684.androidhack.R;
 import com.example.atv684.androidhack.objects.House;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -79,10 +81,13 @@ public class HouseListAdapter implements ListAdapter {
         // Now we can fill the layout with the right values
         TextView houseName = (TextView) convertView.findViewById(R.id.name);
         TextView houseDescription = (TextView) convertView.findViewById(R.id.description);
-
+        ImageView houseImage = (ImageView) convertView.findViewById(R.id.icon);
         houseName.setText(objects.get(position).getName());
         houseDescription.setText(objects.get(position).getDescription());
 
+        if(objects.get(position).getHouseImages().size()>0) {
+            Picasso.with(context).load(objects.get(position).getHouseImages().get(0)).into(houseImage);
+        }
 
         return convertView;
 
