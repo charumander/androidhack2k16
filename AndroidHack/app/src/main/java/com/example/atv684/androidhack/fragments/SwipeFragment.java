@@ -1,11 +1,13 @@
 package com.example.atv684.androidhack.fragments;
 
+import android.content.DialogInterface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,10 +55,13 @@ public class SwipeFragment extends Fragment{
             if(HouseUtil.canAffordHouse(house)){
                 MainApplication.getApplication().setHouseStatus(house.getName(), true);
                 MainApplication.getApplication().addSwipedHouse(house.getName(), house);
+
+                //showCongrats();
             }
             else{
                 MainApplication.getApplication().setHouseStatus(house.getName(), false);
                 MainApplication.getApplication().addSwipedHouse(house.getName(), house);
+                showCantAfford(house);
             }
         }
 
@@ -65,6 +70,26 @@ public class SwipeFragment extends Fragment{
             cardCount++;
         }
     };
+
+    private void showCantAfford(House house) {
+
+        String message = "It seems like you can't afford this house. try managing your expenses and look for something more in your price range";
+        if(HouseUtil.isCreditTooLow(house)){
+            message = "Your credit is too low! Lenders will be relunctant to lend to you. Try building credit and trying again.";
+        }
+
+        // Use the Builder class for convenient dialog construction
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage(message)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                });
+        // Create the AlertDialog object and return it
+        builder.create().show();
+
+    }
 
     private CardContainer mCardContainer;
 

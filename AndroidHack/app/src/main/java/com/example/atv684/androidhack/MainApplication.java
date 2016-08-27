@@ -51,7 +51,7 @@ public class MainApplication extends Application {
     public User getUser(){
         User user = new User();
 
-        user.setCreditScore(650);
+        user.setCreditScore(500);
         user.setYearlyIncome(50000);
         user.setDesiredDistance(100);
         user.setMonthlyExpenses(600);
