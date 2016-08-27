@@ -12,15 +12,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/abc_text_size_headline_material"
-        android:textColor="white"
-        android:layout_above="@id/body"/>
+        android:textColor="#ffffff"
+        android:layout_above="@+id/body"/>
     <TextView android:text="@string/hearthomebody"
         android:id="@+id/body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/abc_text_size_body_1_material"
-        android:textColor="white"
-        android:layout_above="@id/bottombar"/>
+        android:textColor="#ffffff"
+        android:layout_above="@+id/bottombar"/>
 
     <Button style="?android:attr/buttonBarButtonStyle"
         android:orientation="horizontal"
@@ -29,5 +29,5 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Getting Started"
-        android:textColor="white" />
+        android:textColor="#ffffff" />
 </RelativeLayout>
