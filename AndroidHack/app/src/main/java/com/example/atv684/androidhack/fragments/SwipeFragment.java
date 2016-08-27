@@ -1,10 +1,12 @@
 package com.example.atv684.androidhack.fragments;
 
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +17,7 @@ import com.andtinder.model.CardModel;
 import com.andtinder.view.CardContainer;
 import com.andtinder.view.SimpleCardStackAdapter;
 import com.example.atv684.androidhack.HouseUtil;
+import com.example.atv684.androidhack.MainActivity;
 import com.example.atv684.androidhack.MainApplication;
 import com.example.atv684.androidhack.MainPagerAdapter;
 import com.example.atv684.androidhack.R;
@@ -39,6 +42,9 @@ public class SwipeFragment extends Fragment{
     public int cardCount = 0;
 
     ArrayList<House> houses;
+
+    private FloatingActionButton fabLike;
+    private FloatingActionButton fabDislike;
 
     CardModel.OnCardDimissedListener cardDimissedListener = new CardModel.OnCardDimissedListener() {
         @Override
@@ -72,7 +78,6 @@ public class SwipeFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-
         return inflater.inflate(R.layout.swipe_fragment_layout, container, false);
     }
 
@@ -82,7 +87,24 @@ public class SwipeFragment extends Fragment{
 
         mCardContainer = (CardContainer) view.findViewById(R.id.cardContainer);
 
+        fabLike = (FloatingActionButton) getActivity().findViewById(R.id.like_button);
 
+        fabDislike = (FloatingActionButton) getActivity().findViewById(R.id.dislike_button);
+
+        fabLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                cardDimissedListener.onLike();
+            }
+        });
+
+        fabLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cardDimissedListener.onDislike();
+            }
+        });
         waitForHouses();
 
     }
