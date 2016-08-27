@@ -1,6 +1,7 @@
 package com.example.atv684.androidhack.fragments;
 
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import com.example.atv684.androidhack.MainApplication;
 import com.example.atv684.androidhack.MainPagerAdapter;
 import com.example.atv684.androidhack.R;
 import com.example.atv684.androidhack.helper.DataHelper;
+import com.example.atv684.androidhack.helper.ImageHelper;
 import com.example.atv684.androidhack.objects.House;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
@@ -37,32 +39,36 @@ import java.util.Random;
 /**
  * Created by atv684 on 8/27/16.
  */
-public class SwipeFragment extends Fragment{
+public class SwipeFragment extends Fragment implements ImageHelper.onBitMapReceivedListener{
 
     public int cardCount = 0;
 
     ArrayList<House> houses;
 
+    private SimpleCardStackAdapter adapter;
+
+    private int position = 0;
+
     CardModel.OnCardDimissedListener cardDimissedListener = new CardModel.OnCardDimissedListener() {
         @Override
         public void onLike() {
 
-            CardModel model = (CardModel)mCardContainer.getAdapter().getItem(cardCount);
+            CardModel model = (CardModel) mCardContainer.getAdapter().getItem(cardCount);
 
             House house = HouseUtil.getHouseByName(model.getTitle(), houses);
 
             cardCount++;
 
-            if(HouseUtil.canAffordHouse(house)){
+            if (HouseUtil.canAffordHouse(house)) {
                 MainApplication.getApplication().setHouseStatus(house.getName(), true);
                 MainApplication.getApplication().addSwipedHouse(house.getName(), house);
 
                 showCongrats();
             }
             else{
+
                 MainApplication.getApplication().setHouseStatus(house.getName(), false);
                 MainApplication.getApplication().addSwipedHouse(house.getName(), house);
-                showCantAfford(house);
             }
         }
 
@@ -113,7 +119,6 @@ public class SwipeFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-
         return inflater.inflate(R.layout.swipe_fragment_layout, container, false);
     }
 
@@ -122,7 +127,6 @@ public class SwipeFragment extends Fragment{
         super.onViewCreated(view, savedInstanceState);
 
         mCardContainer = (CardContainer) view.findViewById(R.id.cardContainer);
-
 
         waitForHouses();
 
@@ -140,15 +144,19 @@ public class SwipeFragment extends Fragment{
         waitForHouses();
     }
 
-    public void onGetHouses(ArrayList<House> houses){
+    public void onGetHouses(ArrayList<House> houses) {
 
-        if(isAdded()) {
-            SimpleCardStackAdapter adapter = new SimpleCardStackAdapter(getContext());
+        if (isAdded()) {
+            adapter = new SimpleCardStackAdapter(getContext());
 
             for (House h : houses) {
 
                 CardModel cardModel = new CardModel(h.getName(), h.getDescription(), getResources().getDrawable(getRandomHouseDrawable()));
                 cardModel.setOnCardDimissedListener(cardDimissedListener);
+                if (h.getHouseImages() != null && h.getHouseImages().size() > 0) {
+                    ImageHelper.loadImageFromUrl(getContext(), h.getHouseImages().get(0), this, position++);
+                }
+
                 adapter.add(cardModel);
             }
 
@@ -156,29 +164,34 @@ public class SwipeFragment extends Fragment{
         }
     }
 
-    public void waitForHouses(){
+    public void waitForHouses() {
 
         houses = (ArrayList) MainApplication.getApplication().getSearchResults();
-        if(houses == null){
+        if (houses == null) {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     houses = (ArrayList) MainApplication.getApplication().getSearchResults();
 
-                    if(houses != null){
+                    if (houses != null) {
                         onGetHouses(houses);
-                    }
-                    else{
+                    } else {
                         waitForHouses();
                     }
                 }
             }, 100);
-        }
-        else{
+        } else {
             onGetHouses(houses);
         }
     }
 
+    @Override
+    public void imageLoaded(Bitmap bitmap, int position) {
+        CardModel cardModel = adapter.getCardModel(position);
+        Drawable drawable = new BitmapDrawable(getResources(), bitmap);
+        cardModel.setCardImageDrawable(drawable);
+        adapter.notifyDataSetChanged();
+    }
 
     public int getRandomHouseDrawable() {
         Random random = new Random();
