@@ -20,6 +20,8 @@ public class MainApplication extends Application {
 
     public HashMap<String, Boolean> houseStatuses;
 
+    public HashMap<String, House> swipedHouses;
+
     private static MainApplication mainApplication;
 
     @Override
@@ -29,6 +31,7 @@ public class MainApplication extends Application {
         mainApplication = this;
 
         houseStatuses = new HashMap<String, Boolean>();
+        swipedHouses = new HashMap<String, House>();
     }
 
     /**
@@ -73,5 +76,13 @@ public class MainApplication extends Application {
 
     public Boolean getHouseStatus(String name) {
         return houseStatuses.get(name);
+    }
+
+    public void addSwipedHouse(String name, House house){
+        swipedHouses.put(name, house);
+    }
+
+    public House getSwipedHouse(String name){
+        return swipedHouses.get(name);
     }
 }

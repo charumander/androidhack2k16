@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import com.example.atv684.androidhack.HouseActivity;
 import com.example.atv684.androidhack.HouseListAdapter.HouseListAdapter;
+import com.example.atv684.androidhack.MainApplication;
 import com.example.atv684.androidhack.R;
 import com.example.atv684.androidhack.objects.House;
 import com.example.atv684.androidhack.objects.HouseTypePref;
@@ -33,8 +34,6 @@ public class MyHomesFragment extends ListFragment{
         super.onViewCreated(view, savedInstanceState);
 
         ArrayList<House> houses = new ArrayList<House>();
-
-        houses.add(new House("Name", "Description", "zip", 500000, null, 3, 2, HouseTypePref.Apartment.toString()));
 
         adapter = new HouseListAdapter(getContext(), houses);
         setListAdapter(adapter);
