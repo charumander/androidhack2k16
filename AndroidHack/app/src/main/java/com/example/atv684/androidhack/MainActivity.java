@@ -24,19 +24,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        //TODO: Remove the below 2 lines also if no other data setup is needed
         Firebase.setAndroidContext(this);
 
-        User user1 = new User("tom", "19806", 250000, 650, 60000);
-
-
         Firebase myFirebaseRef = new Firebase("https://housr-df682.firebaseio.com/");
-
-        House h1 = new House("LazyPalms", "Luxurious palace on the beach", "19806", 500000);
-
-        myFirebaseRef.child("houses").child(h1.getName()).setValue(h1);
-
-        myFirebaseRef.child("users").child(user1.getUsername()).setValue(user1);
 
     }
 
