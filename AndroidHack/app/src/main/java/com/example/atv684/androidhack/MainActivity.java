@@ -9,7 +9,11 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.atv684.androidhack.objects.House;
 import com.firebase.client.Firebase;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +25,13 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Firebase.setAndroidContext(this);
+
+        Firebase myFirebaseRef = new Firebase("https://housr-df682.firebaseio.com/");
+
+        House h1 = new House("Lazy Palms", "Luxurious palace on the beach", "19806", 500000);
+
+        myFirebaseRef.child("houses").child(h1.getName()).setValue(h1);
+
     }
 
     @Override
