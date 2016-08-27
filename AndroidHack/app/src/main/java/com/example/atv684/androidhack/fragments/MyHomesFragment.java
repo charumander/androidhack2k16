@@ -1,6 +1,7 @@
 package com.example.atv684.androidhack.fragments;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
@@ -46,6 +47,8 @@ public class MyHomesFragment extends ListFragment{
 
         adapter = new HouseListAdapter(getContext(), houses);
         setListAdapter(adapter);
+
+
     }
 
     @Override
