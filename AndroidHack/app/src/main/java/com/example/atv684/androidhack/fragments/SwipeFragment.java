@@ -50,6 +50,7 @@ public class SwipeFragment extends Fragment{
 
         mCardContainer = (CardContainer) view.findViewById(R.id.cardContainer);
 
+
         waitForHouses();
 
     }
@@ -64,7 +65,8 @@ public class SwipeFragment extends Fragment{
         SimpleCardStackAdapter adapter = new SimpleCardStackAdapter(getContext());
 
         for(House h : houses){
-            adapter.add(new CardModel(h.getName(), h.getDescription(), getResources().getDrawable(R.drawable.cats)));
+            CardModel cardModel = new CardModel(h.getName(), h.getDescription(), getResources().getDrawable(R.drawable.cats))
+            adapter.add(cardModel);
         }
 
         mCardContainer.setAdapter(adapter);
