@@ -2,6 +2,7 @@ package com.example.atv684.androidhack;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -73,6 +74,21 @@ public class HouseActivity extends AppCompatActivity {
         pager.setAdapter(adapter);
         indicator.setViewPager(pager);
 
+        TextView acceptanceText = (TextView) findViewById(R.id.acceptanceText);
+
+        if(HouseUtil.canAffordHouse(house) == false) {
+            String message = "You can't afford this house based on your income!";
+            if (HouseUtil.isCreditTooLow(house)) {
+                message = "Your credit is too low, Lenders will have trouble lending to you";
+            }
+            acceptanceText.setText(message);
+            acceptanceText.setVisibility(View.VISIBLE);
+            acceptanceText.setTextColor(Color.RED);
+        }
+        else{
+            acceptanceText.setVisibility(View.GONE);
+        }
+
         final TextView nameTextView = (TextView) findViewById(R.id.textview_house_name);
         nameTextView.setText(getString(R.string.house_template_name, house.getName()));
 
@@ -96,6 +112,9 @@ public class HouseActivity extends AppCompatActivity {
 
         final TextView descriptionTextView = (TextView) findViewById(R.id.textview_house_description);
         descriptionTextView.setText(getString(R.string.house_template_description, house.getDescription()));
+
+        ImageView image = (ImageView) findViewById(R.id.image);
+        image.setImageDrawable(getResources().getDrawable(R.drawable.house1));
     }
 
     private static class HouseAdapter extends FragmentStatePagerAdapter {
