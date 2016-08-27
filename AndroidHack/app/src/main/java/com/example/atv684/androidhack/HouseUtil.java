@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class HouseUtil {
 
-    public House getHouseByName(String name, ArrayList<House> houses){
+    public static House getHouseByName(String name, ArrayList<House> houses){
         for(House house : houses){
             if(house.getName().equals(name)){
                 return house;
@@ -19,7 +19,7 @@ public class HouseUtil {
         return null;
     }
 
-    public boolean canAffordHouse(House house){
+    public static boolean canAffordHouse(House house){
 
         User user = MainApplication.getApplication().getUser();
 

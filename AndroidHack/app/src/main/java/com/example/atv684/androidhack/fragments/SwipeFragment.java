@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.andtinder.model.CardModel;
 import com.andtinder.view.CardContainer;
 import com.andtinder.view.SimpleCardStackAdapter;
+import com.example.atv684.androidhack.HouseUtil;
 import com.example.atv684.androidhack.MainApplication;
 import com.example.atv684.androidhack.MainPagerAdapter;
 import com.example.atv684.androidhack.R;
@@ -34,6 +35,34 @@ import java.util.Map;
  * Created by atv684 on 8/27/16.
  */
 public class SwipeFragment extends Fragment{
+
+    public int cardCount = 0;
+
+    ArrayList<House> houses;
+
+    CardModel.OnCardDimissedListener cardDimissedListener = new CardModel.OnCardDimissedListener() {
+        @Override
+        public void onLike() {
+
+            CardModel model = (CardModel)mCardContainer.getAdapter().getItem(cardCount);
+
+            House house = HouseUtil.getHouseByName(model.getTitle(), houses);
+
+            cardCount++;
+
+            if(HouseUtil.canAffordHouse(house)){
+                MainApplication.getApplication().setHouseStatus(house.getName(), true);
+            }
+            else{
+                MainApplication.getApplication().setHouseStatus(house.getName(), false);
+            }
+        }
+
+        @Override
+        public void onDislike() {
+            cardCount++;
+        }
+    };
 
     private CardContainer mCardContainer;
 
@@ -80,12 +109,12 @@ public class SwipeFragment extends Fragment{
 
     public void waitForHouses(){
 
-        ArrayList<House> houses = (ArrayList) MainApplication.getApplication().getSearchResults();
+        houses = (ArrayList) MainApplication.getApplication().getSearchResults();
         if(houses == null){
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    ArrayList<House> houses = (ArrayList) MainApplication.getApplication().getSearchResults();
+                    houses = (ArrayList) MainApplication.getApplication().getSearchResults();
 
                     if(houses != null){
                         onGetHouses(houses);
