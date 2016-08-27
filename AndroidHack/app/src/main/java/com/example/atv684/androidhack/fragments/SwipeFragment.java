@@ -65,7 +65,7 @@ public class SwipeFragment extends Fragment{
         SimpleCardStackAdapter adapter = new SimpleCardStackAdapter(getContext());
 
         for(House h : houses){
-            CardModel cardModel = new CardModel(h.getName(), h.getDescription(), getResources().getDrawable(R.drawable.cats))
+            CardModel cardModel = new CardModel(h.getName(), h.getDescription(), getResources().getDrawable(R.drawable.cats));
             adapter.add(cardModel);
         }
 
