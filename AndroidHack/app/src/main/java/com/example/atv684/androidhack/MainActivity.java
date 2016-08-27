@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         Firebase myFirebaseRef = new Firebase("https://housr-df682.firebaseio.com/");
 
-        House h1 = new House("Lazy Palms", "Luxurious palace on the beach", "19806", 500000);
+        House h1 = new House("LazyPalms", "Luxurious palace on the beach", "19806", 500000);
 
         myFirebaseRef.child("houses").child(h1.getName()).setValue(h1);
 
