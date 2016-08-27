@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">AndroidHack</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_getting_started">GettingStarted</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="hearthomebody">Heart Home is designed to be a fun and simple tool to aid you in your quest to find your perfect home. Get started to find your ideal home.</string>
 </resources>
