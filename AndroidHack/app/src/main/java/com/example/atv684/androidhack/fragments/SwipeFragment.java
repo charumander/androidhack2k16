@@ -1,5 +1,7 @@
 package com.example.atv684.androidhack.fragments;
 
+import com.example.atv684.androidhack.objects.House;
+
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -7,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -18,6 +21,7 @@ import com.andtinder.model.CardModel;
 import com.andtinder.view.CardContainer;
 import com.andtinder.view.SimpleCardStackAdapter;
 import com.example.atv684.androidhack.HouseUtil;
+import com.example.atv684.androidhack.MainActivity;
 import com.example.atv684.androidhack.MainApplication;
 import com.example.atv684.androidhack.MainPagerAdapter;
 import com.example.atv684.androidhack.R;
@@ -45,6 +49,8 @@ public class SwipeFragment extends Fragment implements ImageHelper.onBitMapRecei
 
     ArrayList<House> houses;
 
+    private FloatingActionButton fabLike;
+    private FloatingActionButton fabDislike;
     private SimpleCardStackAdapter adapter;
 
     private int position = 0;
@@ -131,6 +137,25 @@ public class SwipeFragment extends Fragment implements ImageHelper.onBitMapRecei
         super.onViewCreated(view, savedInstanceState);
 
         mCardContainer = (CardContainer) view.findViewById(R.id.cardContainer);
+
+        fabLike = (FloatingActionButton) getActivity().findViewById(R.id.like_button);
+
+        fabDislike = (FloatingActionButton) getActivity().findViewById(R.id.dislike_button);
+
+        fabLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                cardDimissedListener.onLike();
+            }
+        });
+
+        fabLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cardDimissedListener.onDislike();
+            }
+        });
 
         waitForHouses();
 
