@@ -1,7 +1,8 @@
 package com.example.atv684.androidhack;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 
 /**
  * Created by atv684 on 8/27/16.
@@ -13,15 +14,13 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
     }
 
     @Override
-    public Fragment getItem(int index) {
-
-        switch (index) {
-            default 0:
+    public Fragment getItem(int position) {
+        switch (position) {
+            default:
                 // Top Rated fragment activity
                 return new Fragment();
         }
 
-        return null;
     }
 
     @Override

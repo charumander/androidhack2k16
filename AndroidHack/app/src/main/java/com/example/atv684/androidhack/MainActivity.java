@@ -5,6 +5,8 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -21,29 +23,26 @@ import org.json.JSONObject;
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 
     private ViewPager viewPager;
-    private TabsPagerAdapter mAdapter;
+    private MainPagerAdapter mAdapter;
     private ActionBar actionBar;
     // Tab titles
-    private String[] tabs = { "Top Rated", "Games", "Movies" };
+    private String[] tabs = {"Top Rated", "Games", "Movies"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
+        //TODO: Remove the below 2 lines also if no other data setup is needed
         Firebase.setAndroidContext(this);
 
-        User user1 = new User("tom", "19806", 250000, 650, 60000);
-
-
         Firebase myFirebaseRef = new Firebase("https://housr-df682.firebaseio.com/");
+
 
         // Initilization
         viewPager = (ViewPager) findViewById(R.id.pager);
         actionBar = getActionBar();
-        mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
+        mAdapter = new MainPagerAdapter(getSupportFragmentManager());
 
         viewPager.setAdapter(mAdapter);
         actionBar.setHomeButtonEnabled(false);

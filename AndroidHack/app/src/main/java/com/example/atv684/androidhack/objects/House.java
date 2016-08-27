@@ -1,11 +1,17 @@
 package com.example.atv684.androidhack.objects;
 
+import java.util.List;
+
 /**
  * Created by atv684 on 8/27/16.
  */
 public class House {
 
-    String name, description,zip;
+    String name, description,zip, city , type;
+
+    int beds, baths;
+
+    private List<String> houseImages;
 
     int cost;
 
@@ -13,11 +19,15 @@ public class House {
 
     }
 
-    public House(String name, String description, String zip, int cost){
+    public House(String name, String description, String zip, int cost, List<String> houseImages, int beds, int baths, String type){
         this.name = name;
         this.description = description;
         this.zip = zip;
         this.cost = cost;
+        this.houseImages = houseImages;
+        this.beds = beds;
+        this.baths = baths;
+        this.type = type;
     }
 
     public String getName() {
@@ -50,5 +60,45 @@ public class House {
 
     public void setCost(int cost) {
         this.cost = cost;
+    }
+
+    public List<String> getHouseImages() {
+        return houseImages;
+    }
+
+    public void setHouseImages(List<String> houseImages) {
+        this.houseImages = houseImages;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public int getBeds() {
+        return beds;
+    }
+
+    public void setBeds(int beds) {
+        this.beds = beds;
+    }
+
+    public int getBaths() {
+        return baths;
+    }
+
+    public void setBaths(int baths) {
+        this.baths = baths;
     }
 }
