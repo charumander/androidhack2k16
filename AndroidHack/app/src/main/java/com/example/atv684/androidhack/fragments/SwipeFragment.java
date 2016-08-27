@@ -69,6 +69,8 @@ public class SwipeFragment extends Fragment implements ImageHelper.onBitMapRecei
 
                 MainApplication.getApplication().setHouseStatus(house.getName(), false);
                 MainApplication.getApplication().addSwipedHouse(house.getName(), house);
+
+                showCantAfford(house);
             }
         }
 
@@ -98,6 +100,8 @@ public class SwipeFragment extends Fragment implements ImageHelper.onBitMapRecei
         String message = "It seems like you can't afford this house. try managing your expenses and look for something more in your price range";
         if(HouseUtil.isCreditTooLow(house)){
             message = "Your credit is too low! Lenders will be relunctant to lend to you. Try building credit and trying again.";
+
+            MainApplication.getApplication().getUser().setCreditScore(800);
         }
 
         // Use the Builder class for convenient dialog construction
