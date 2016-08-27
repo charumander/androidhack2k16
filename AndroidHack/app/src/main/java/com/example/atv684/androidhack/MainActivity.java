@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.atv684.androidhack.fragments.SwipeFragment;
 import com.example.atv684.androidhack.helper.DataHelper;
 import com.example.atv684.androidhack.objects.House;
 import com.example.atv684.androidhack.objects.User;
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
     // Tab titles
     private String[] tabs = {"Find a house", "My Matches", "Profile"};
+    private SwipeFragment swipeFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +85,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
             }
         });
+
+        swipeFragment = (SwipeFragment)adapter.getItem(0);
 
     }
 
@@ -142,6 +146,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
             houses.add(houseObject);
         }
         MainApplication.getApplication().setSearchResults(houses);
+
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.example.atv684.androidhack.fragments;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -13,7 +14,10 @@ import android.view.ViewGroup;
 import com.andtinder.model.CardModel;
 import com.andtinder.view.CardContainer;
 import com.andtinder.view.SimpleCardStackAdapter;
+import com.example.atv684.androidhack.MainApplication;
+import com.example.atv684.androidhack.MainPagerAdapter;
 import com.example.atv684.androidhack.R;
+import com.example.atv684.androidhack.helper.DataHelper;
 import com.example.atv684.androidhack.objects.House;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
@@ -29,7 +33,7 @@ import java.util.Map;
 /**
  * Created by atv684 on 8/27/16.
  */
-public class SwipeFragment extends Fragment {
+public class SwipeFragment extends Fragment{
 
     private CardContainer mCardContainer;
 
@@ -46,12 +50,8 @@ public class SwipeFragment extends Fragment {
 
         mCardContainer = (CardContainer) view.findViewById(R.id.cardContainer);
 
-        SimpleCardStackAdapter adapter = new SimpleCardStackAdapter(getContext());
-        adapter.add(new CardModel("Title1", "Description goes here", getResources().getDrawable(R.drawable.cats)));
-        adapter.add(new CardModel("Title1", "Description goes here", getResources().getDrawable(R.drawable.camera)));
-        adapter.add(new CardModel("Title1", "Description goes here", getResources().getDrawable(R.drawable.heart)));
+        waitForHouses();
 
-        mCardContainer.setAdapter(adapter);
     }
 
     @Override
@@ -60,6 +60,35 @@ public class SwipeFragment extends Fragment {
     }
 
 
+    public void onGetHouses(ArrayList<House> houses){
+        SimpleCardStackAdapter adapter = new SimpleCardStackAdapter(getContext());
+
+        for(House h : houses){
+            adapter.add(new CardModel(h.getName(), h.getDescription(), getResources().getDrawable(R.drawable.cats)));
+        }
+
+        mCardContainer.setAdapter(adapter);
+    }
+
+    public void waitForHouses(){
+
+        ArrayList<House> houses = (ArrayList) MainApplication.getApplication().getSearchResults();
+        if(houses == null){
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    ArrayList<House> houses = (ArrayList) MainApplication.getApplication().getSearchResults();
+
+                    if(houses != null){
+                        onGetHouses(houses);
+                    }
+                    else{
+                        waitForHouses();
+                    }
+                }
+            }, 100);
+        }
+    }
 
 
 
