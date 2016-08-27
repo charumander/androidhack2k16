@@ -55,14 +55,14 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
 
-        if (settings.getBoolean("my_first_time", true)) {
-            //the app is being launched for first time, do something
-            Intent intent = new Intent(this, GettingStarted.class);
-            startActivity(intent);
-            finish();
-            // record the fact that the app has been started at least once
-            settings.edit().putBoolean("my_first_time", false).commit();
-        }
+//        if (settings.getBoolean("my_first_time", true)) {
+//            //the app is being launched for first time, do something
+//            Intent intent = new Intent(this, GettingStarted.class);
+//            startActivity(intent);
+//            finish();
+//            // record the fact that the app has been started at least once
+//            settings.edit().putBoolean("my_first_time", false).commit();
+//        }
 
         setContentView(R.layout.activity_main);
         //TODO: Remove the below 2 lines also if no other data setup is needed
@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
                 viewPager.setCurrentItem(tab.getPosition());
 
                 adapter.getItem(viewPager.getCurrentItem()).onResume();
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -132,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
     @Override
     public void onTabSelected(ActionBar.Tab tab, android.support.v4.app.FragmentTransaction ft) {
-
+        mAdapter.getItem(viewPager.getCurrentItem()).onResume();
     }
 
     @Override
