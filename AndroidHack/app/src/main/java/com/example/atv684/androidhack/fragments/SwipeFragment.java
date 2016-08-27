@@ -36,7 +36,8 @@ public class SwipeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+
+        return inflater.inflate(R.layout.swipe_fragment_layout, container, false);
     }
 
     @Override
@@ -46,7 +47,7 @@ public class SwipeFragment extends Fragment {
         mCardContainer = (CardContainer) view.findViewById(R.id.cardContainer);
 
         SimpleCardStackAdapter adapter = new SimpleCardStackAdapter(getContext());
-        adapter.add(new CardModel("Title1", "Description goes here", getActivity().getDrawable(R.drawable.cats)));
+        adapter.add(new CardModel("Title1", "Description goes here", (Drawable)null));
         mCardContainer.setAdapter(adapter);
     }
 
