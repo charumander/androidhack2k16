@@ -9,11 +9,11 @@ public class House {
 
     String name, description,zip, city , type;
 
-    int beds, baths;
+    long beds, baths;
 
     private List<String> houseImages;
 
-    int cost;
+    long cost;
 
     public House(){
 
@@ -54,11 +54,11 @@ public class House {
         this.zip = zip;
     }
 
-    public int getCost() {
+    public long getCost() {
         return cost;
     }
 
-    public void setCost(int cost) {
+    public void setCost(long cost) {
         this.cost = cost;
     }
 
@@ -86,19 +86,19 @@ public class House {
         this.type = type;
     }
 
-    public int getBeds() {
+    public long getBeds() {
         return beds;
     }
 
-    public void setBeds(int beds) {
+    public void setBeds(long beds) {
         this.beds = beds;
     }
 
-    public int getBaths() {
+    public long getBaths() {
         return baths;
     }
 
-    public void setBaths(int baths) {
+    public void setBaths(long baths) {
         this.baths = baths;
     }
 }

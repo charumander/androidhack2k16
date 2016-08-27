@@ -12,20 +12,33 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.atv684.androidhack.helper.DataHelper;
 import com.example.atv684.androidhack.objects.House;
 import com.example.atv684.androidhack.objects.User;
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
-public class MainActivity extends AppCompatActivity implements ActionBar.TabListener {
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity implements ActionBar.TabListener, ValueEventListener {
 
     private ViewPager viewPager;
+
+    private MainPagerAdapter mAdapter;
+
+    private ActionBar actionBar;
 
     // Tab titles
     private String[] tabs = {"Find a house", "My Matches", "Profile"};
@@ -35,10 +48,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //TODO: Remove the below 2 lines also if no other data setup is needed
-        Firebase.setAndroidContext(this);
 
-        Firebase myFirebaseRef = new Firebase("https://housr-df682.firebaseio.com/");
-
+        DataHelper.fetchHouses(this);
 
         // Initilization
         viewPager = (ViewPager) findViewById(R.id.pager);
@@ -109,6 +120,32 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
     @Override
     public void onTabReselected(ActionBar.Tab tab, android.support.v4.app.FragmentTransaction ft) {
+
+    }
+
+    @Override
+    public void onDataChange(DataSnapshot dataSnapshot) {
+        Iterable<DataSnapshot> housesData = dataSnapshot.getChildren();
+        List<House> houses = new ArrayList<>();
+        for (DataSnapshot house: housesData) {
+            House houseObject = new House();
+            houseObject.setBeds(house.child("beds").getValue()!=null? (Long) house.child("beds").getValue(): 3);//Defaulting to 3
+            houseObject.setBaths(house.child("baths").getValue()!=null? (Long) house.child("baths").getValue(): 2);//Defaulting to 2
+            houseObject.setCity(house.child("city").getValue()!=null? (String) house.child("city").getValue(): "Wilmington");//Defaulting
+            // to wilmington
+            houseObject.setCost(house.child("cost").getValue()!=null? (Long) house.child("cost").getValue(): 50000l);
+            houseObject.setDescription(house.child("description").getValue()!=null? (String) house.child("description").getValue():"" );
+            houseObject.setName(house.child("name").getValue()!=null? (String) house.child("name").getValue():"" );
+            houseObject.setType(house.child("type").getValue()!=null? (String) house.child("type").getValue():"" );
+            houseObject.setZip(house.child("zip").getValue()!=null? (String) house.child("zip").getValue():"" );
+            //houseObject.setHouseImages(house.child("houseImages").getChildren());
+            houses.add(houseObject);
+        }
+        houses.size();
+    }
+
+    @Override
+    public void onCancelled(FirebaseError firebaseError) {
 
     }
 }
