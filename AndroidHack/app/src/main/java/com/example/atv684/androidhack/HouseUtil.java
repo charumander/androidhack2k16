@@ -21,19 +21,21 @@ public class HouseUtil {
 
     public static boolean canAffordHouse(House house){
 
-        User user = MainApplication.getApplication().getUser();
-
-        long housePrice = house.getCost();
-
-        if(user.getYearlyIncome()/3 < housePrice/15/12){
-            return false;
-        }
-
-        if(user.getCreditScore() < 600){
-            return false;
-        }
-
         return true;
+
+//        User user = MainApplication.getApplication().getUser();
+//
+//        long housePrice = house.getCost();
+//
+//        if(user.getYearlyIncome()/3 < housePrice/15/12){
+//            return false;
+//        }
+//
+//        if(user.getCreditScore() < 600){
+//            return false;
+//        }
+//
+//        return true;
     }
 
 

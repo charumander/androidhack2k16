@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.atv684.androidhack.fragments.MyHomesFragment;
 import com.example.atv684.androidhack.fragments.SwipeFragment;
 import com.example.atv684.androidhack.helper.DataHelper;
 import com.example.atv684.androidhack.objects.House;
@@ -88,6 +89,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
+
+                adapter.getItem(viewPager.getCurrentItem()).onResume();
             }
 
             @Override

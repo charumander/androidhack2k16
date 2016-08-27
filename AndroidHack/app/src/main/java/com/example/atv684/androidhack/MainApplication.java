@@ -8,6 +8,7 @@ import com.joanzapata.iconify.Iconify;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.example.atv684.androidhack.objects.House;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class MainApplication extends Application {
 
     public HashMap<String, Boolean> houseStatuses;
 
-    public HashMap<String, House> swipedHouses;
+    public ArrayList<House> swipedHouses;
 
     private static MainApplication mainApplication;
 
@@ -31,7 +32,7 @@ public class MainApplication extends Application {
         mainApplication = this;
 
         houseStatuses = new HashMap<String, Boolean>();
-        swipedHouses = new HashMap<String, House>();
+        swipedHouses = new ArrayList<House>();
     }
 
     /**
@@ -79,10 +80,12 @@ public class MainApplication extends Application {
     }
 
     public void addSwipedHouse(String name, House house){
-        swipedHouses.put(name, house);
+        swipedHouses.add(house);
     }
 
-    public House getSwipedHouse(String name){
-        return swipedHouses.get(name);
+    public ArrayList<House> getSwipedHouses(){
+        return swipedHouses;
     }
+
+
 }

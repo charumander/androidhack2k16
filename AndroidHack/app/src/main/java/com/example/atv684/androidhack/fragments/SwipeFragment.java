@@ -52,9 +52,11 @@ public class SwipeFragment extends Fragment{
 
             if(HouseUtil.canAffordHouse(house)){
                 MainApplication.getApplication().setHouseStatus(house.getName(), true);
+                MainApplication.getApplication().addSwipedHouse(house.getName(), house);
             }
             else{
                 MainApplication.getApplication().setHouseStatus(house.getName(), false);
+                MainApplication.getApplication().addSwipedHouse(house.getName(), house);
             }
         }
 
@@ -98,14 +100,18 @@ public class SwipeFragment extends Fragment{
     }
 
     public void onGetHouses(ArrayList<House> houses){
-        SimpleCardStackAdapter adapter = new SimpleCardStackAdapter(getContext());
 
-        for(House h : houses){
-            CardModel cardModel = new CardModel(h.getName(), h.getDescription(), getResources().getDrawable(R.drawable.cats));
-            adapter.add(cardModel);
+        if(isAdded()) {
+            SimpleCardStackAdapter adapter = new SimpleCardStackAdapter(getContext());
+
+            for (House h : houses) {
+                CardModel cardModel = new CardModel(h.getName(), h.getDescription(), getResources().getDrawable(R.drawable.cats));
+                cardModel.setOnCardDimissedListener(cardDimissedListener);
+                adapter.add(cardModel);
+            }
+
+            mCardContainer.setAdapter(adapter);
         }
-
-        mCardContainer.setAdapter(adapter);
     }
 
     public void waitForHouses(){
