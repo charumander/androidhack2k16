@@ -9,6 +9,10 @@ public class User {
 
     String username, preference, zip;
 
+    public User(){
+
+    }
+
     public User(String username, String zip, int targetPrice, int creditScore, int yearlyIncome){
         this.creditScore = creditScore;
         this.username = username;

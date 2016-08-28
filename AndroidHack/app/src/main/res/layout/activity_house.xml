@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.atv684.androidhack.HouseActivity"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            >
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewpager_house_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+            <me.relex.circleindicator.CircleIndicator
+                android:id="@+id/viewpager_house_indicator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"/>
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/acceptanceText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"/>
+
+        <com.joanzapata.iconify.widget.IconTextView
+            android:id="@+id/textview_house_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            />
+
+        <com.joanzapata.iconify.widget.IconTextView
+            android:id="@+id/textview_house_cost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <com.joanzapata.iconify.widget.IconTextView
+                android:id="@+id/textview_house_beds"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="24sp"
+                />
+
+            <com.joanzapata.iconify.widget.IconTextView
+                android:id="@+id/textview_house_baths"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="24sp"
+                />
+
+        </LinearLayout>
+
+        <com.joanzapata.iconify.widget.IconTextView
+            android:id="@+id/textview_house_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <com.joanzapata.iconify.widget.IconTextView
+                android:id="@+id/textview_house_city"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="24sp"
+                />
+
+            <com.joanzapata.iconify.widget.IconTextView
+                android:id="@+id/textview_house_zip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:textSize="24sp"
+                />
+
+        </LinearLayout>
+
+        <com.joanzapata.iconify.widget.IconTextView
+            android:id="@+id/textview_house_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="28sp"
+            />
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>
